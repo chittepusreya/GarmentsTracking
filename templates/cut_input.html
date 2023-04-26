@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cut Input</title>
+    <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="menu-icon">
+      <a href="/orders/{{ order_id }}/inputs"><span class="material-icons-outlined">arrow_back</span></a>
+    </div>
+  <h1>Cut Input Details</h1>
+  <link rel="stylesheet" href="{{url_for('static', filename='dpt.css')}}">
+  <form action="/orders/{{ order_id }}/inputs/cut/save" method="post">
+    <table>
+      <tr>
+        <td> <label for="item_no">Item no.:</label></td>
+        <td> <input type="text" name="item_num" id="item_no" value="{{ data['item_num'] }}" disabled></td>
+      </tr>
+      <tr>
+        <td> <label for="style_no">Style no.:</label></td>
+        <td> <input type="text" name="style_num" id="style_no" value="{{ data['style_num'] }}" disabled></td>
+      </tr>
+      </tr>
+        <td><label for="color_code">Color:</label></td>
+        <td><input type="text" name="colour_code" id="color_code"></td>
+      </tr>
+      <tr>
+        <td><label for="sizes">Size:</label></td>
+        <td><input type="text" name="sizes" id="sizes"></td>
+      </tr>
+      <tr>
+        <td><label for="cutting_table">Cutting table:</label></td>
+        <td><input type="number" name="cutting_table" id="cutting_table"></td>
+      </tr>
+      <tr>
+        <td><label for="lays">No. of lays:</label></td>
+        <td><input type="number" name="lays" id="lays"></td>
+      </tr>
+      <tr>
+        <td><label for="p_s_c_d">Planned start cut date:</label></td>
+        <td><input type="date" name="p_s_c_d" id="p_s_c_d"></td>
+      </tr>
+      <tr>
+        <td><label for="p_e_c_d">Planned end cut date:</label></td>
+        <td><input type="date" name="p_e_c_d" id="p_e_c_d"></td>
+      </tr>
+      <tr>
+        <td><label for="a_s_c_d">Actual start cut date:</label></td>
+        <td><input type="date" name="a_s_c_d" id="a_s_c_d"></td>
+      </tr>
+      <tr>
+        <td><label for="output_day">Planned Output/day:</label></td>
+        <td><input type="number" name="output_per_day" id="output_day"></td>
+      </tr>
+      <tr>
+        <td><label for="planned_output">Total Output:</label></td>
+        <td><input type="number" name="total_output" id="planned_output"></td>
+      </tr>
+    </table>
+    <div class="btn">
+      <a href="/orders/{{ order_id }}/inputs/cut/scan">Scan Barcode</a>
+      <input type="submit" value="Save Data">
+      <a href="/orders/{{ order_id }}/cut/report">Show Current Report</a>
+      <a href="/orders/{{ order_id }}/inputs/cut/mark_complete">Mark As Complete</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,261 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1d2634;
+  color: #9e9ea4;
+  font-family: "Montserrat", "Sans-serif";
+}
+/* CSS code to style the date and time display */
+#clock {
+   font-size: 18px;
+   }
+.material-icons-outlined {
+  display: fixed;
+  vertical-align: middle;
+  line-height: 1px;
+  font-size: 35px;
+  color: white;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 260px 1fr 1fr 1fr;
+  grid-template-rows: 0.2fr 3fr;
+  grid-template-areas:
+      "sidebar header header header"
+      "sidebar main main main";
+  height: 100vh;
+}
+
+
+/* ---------- HEADER ---------- */
+.header {
+  grid-area: header;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px 0 30px;
+  box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+}
+
+.header-right {
+  grid-area: header;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+}
+
+.logout a {
+    margin-top: 20px;
+    padding: 0px 10px;
+	font-family: sans-serif;
+	font-size: 20px;
+	color: white;
+	margin-bottom: 20px;
+	display: flex;
+	text-decoration: none;
+	transition: 0.3s;
+	box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+	}
+
+.logout a:hover {
+	box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+	color: rgba(255, 255, 255, 0.2);
+	}
+
+.logoutBtn {
+	font-size: 20px;
+	cursor: pointer;
+	background-color: #1d2634;
+	padding: 0px 10px;
+	border: none;
+	}
+
+.logoutBtn:hover {
+	background-color: rgba(255, 255, 255, 0.2);
+	}
+
+/* ---------- MEDIA QUERIES ---------- */
+
+/* Medium <= 992px */
+
+@media screen and (max-width: 992px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+      "header"
+      "main";
+  }
+
+  #sidebar {
+    display: none;
+  }
+
+  .menu-icon {
+    display: inline;
+  }
+}
+
+/* Small <= 768px */
+
+@media screen and (max-width: 768px) {
+  .main-cards {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+}
+
+
+/* Extra Small <= 576px */
+
+@media screen and (max-width: 576px) {
+  .hedaer-left {
+    display: none;
+  }
+}
+
+/* Navbar */
+nav {
+  margin-top: 15px;
+  color: white;
+  width: 82%;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0px;
+  position: relative;
+  transition: 60s;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar li {
+  display: inline-block;
+  margin-left: 20px;
+}
+nav a {
+  display: block;
+  font-size: 18px;
+  padding: 1rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #1d2634;
+  padding: 10px 150px;
+  margin-top: 0px;
+  align-items: center;
+  border: 1px solid #ccc;
+}
+
+.dropdown-menu li {
+  margin: 10px;
+  colour: white;
+  align-items: center;
+  }
+
+ .dropdown-menu a {
+   display: block;
+   color: white;
+   align-items: center;
+   text-align: center;
+   width: 400%;
+   margin-left: -120px;
+   }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  width: 85%;
+  margin-left: -130px;
+}
+
+.dropdown-menu1 {
+  display: none;
+  position: absolute;
+  background-color: #1d2634;
+  margin-top: 0px;
+  padding: 10px 150px;
+  align-items: center;
+  border: 1px solid #ccc;
+}
+
+.dropdown-menu1 li {
+  margin: 10px;
+  colour: white;
+  align-items: center;
+  }
+
+ .dropdown-menu1 a {
+   display: block;
+   color: white;
+   align-items: center;
+   text-align: center;
+   width: 330%;
+   margin-left: -120px;
+   }
+
+.dropdown:hover .dropdown-menu1 {
+  display: block;
+  width: 85%;
+  margin-left: -130px;
+}
+/* Adjust the hover behavior of the navbar */
+.navbar-nav > li:hover > .dropdown-menu {
+    display: block;
+}
+
+/* Adjust the delay before the dropdown menu disappears */
+.dropdown-menu {
+    transition-delay: 0s;
+}
+
+/* Adjust the duration of the dropdown menu animation */
+.dropdown-menu .dropdown-item {
+    transition-duration: 60s;
+}
+
+.company {
+    font-family: "Montserrat";
+    color: white;
+    display: flex;
+    text-align: center;
+    font-size: 100px;
+    font-weight: 600;
+    margin-top: 130px;
+    margin-left: 100px;
+}
+
+.city {
+    font-family: "Montserrat";
+    color: white;
+    align-items: center;
+    display: flex;
+    font-size: 100px;
+    font-weight: 600;
+    margin-top: 80px;
+    margin-left: 450px;
+}

@@ -1,0 +1,66 @@
+        body {
+		margin: 0;
+		padding: 0;
+		background-color: #fffff0;
+		}
+		.material-icons-outlined {
+         vertical-align: middle;
+         line-height: 10px;
+         font-size: 35px;
+        }
+		.header {
+          grid-area: header;
+          height: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 30px 0 30px;
+          box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+        }
+        .menu-icon {
+          height: 50px;
+          display: flex;
+          margin-top: 30px;
+         }
+		.header-right {
+          grid-area: header;
+          height: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 15px;
+          padding: 0 30px 0 30px;
+          box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+          cursor: pointer;
+        }
+        #email-btn {
+          padding: 8px;
+          background-color: #fffff0;
+          box-border: none;
+          cursor: pointer;
+        }
+
+        [onclick] {
+          padding: 8px;
+          background-color: #fffff0;
+          cursor: pointer;
+        }
+         h1 {
+		 font-size: 30px;
+		 font-weight: 600;
+		 padding: 10px;
+		 text-align: center;
+		 text-decoration: underline;
+		 }
+		table, th, td {
+		margin-left: 30px;
+		border: 1px solid black;
+		border-collapse: collapse;
+		justify-content: space-between;
+		margin-bottom: 100px;
+		}
+		th {
+		background-color: #aa80ff;
+		color: black;
+		padding: 8px 30px;
+		}

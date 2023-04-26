@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Sewing Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='report.css') }}">
+    <header class="header">
+      <div class="menu-icon">
+          <a href="/orders/{{ order_id }}/inputs/sew"><span class="material-icons-outlined">arrow_back</span></a>
+      </div>
+
+        <div id="clock"></div>
+
+	<script>
+		function updateTime() {
+			// Get the current date and time
+			var now = new Date();
+
+			// Format the time as hours:minutes:seconds AM/PM
+			var hours = now.getHours();
+			var minutes = now.getMinutes();
+			var ampm = (hours >= 12) ? "PM" : "AM";
+			hours = hours % 12;
+			hours = (hours == 0) ? 12 : hours;
+			minutes = (minutes < 10) ? "0" + minutes : minutes;
+			var timeString = hours + ":" + minutes + " " + ampm;
+
+			// Update the clock
+			document.getElementById("clock").innerHTML = timeString;
+		}
+
+		// Update the time every second
+		setInterval(updateTime, 1000);
+	</script>
+        <button onclick="savePage()"><span class="material-icons-outlined">print</span></button>
+<script>
+  function savePage() {
+    window.print(); // Open the print dialog
+  }
+</script>
+    </header>
+  <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+</head>
+
+  <body>
+    <table>
+      <h1>Total Sewing Report</h1>
+      <thead>
+      <tr>
+          <th>S.no</th>
+          <th>Item no.</th>
+          <th>Style no.</th>
+          <th>Color</th>
+          <th>Size</th>
+          <th>Planned Start Sew Date</th>
+          <th>Planned End Sew Date</th>
+          <th>Actual Start Sew Date</th>
+          <th>Actual End Sew Date</th>
+          <th>Sewing Line no.</th>
+          <th>Garment SAM</th>
+          <th>No. of Days</th>
+          <th>Manpower</th>
+          <th>Helpers</th>
+          <th>Planned WIP</th>
+          <th>Actual WIP</th>
+          <th>Planned Output</th>
+          <th>Actual Output</th>
+      </tr>
+      </thead>
+      <tbody id="tableBody">
+        {% for colour in colours %}
+        {% for size in sizes %}
+        <tr>
+        <td>{{ count_dict[colour][size]["count"] }}</td>
+        <td>{{ base_data["item_num"] }}</td>
+        <td>{{ base_data["style_num"] }}</td>
+        <td>{{ colour }}</td>
+        <td>{{ size }}</td>
+        {% if constant_data[colour][size]["sew_data_constant"] != "N/A" %}
+        <td>{{ constant_data[colour][size]["sew_data_constant"]["p_s_s_d"] }}</td>
+        <td>{{ constant_data[colour][size]["sew_data_constant"]["p_e_s_d"] }}</td>
+        <td>{{ constant_data[colour][size]["sew_data_constant"]["a_s_s_d"] }}</td>
+        {% else %}
+        <td>N/A</td>
+        <td>N/A</td>
+        <td>N/A</td>
+        {% endif %}
+        <td>{{ stage_complete_date[colour][size]["completed_date"] }}</td>
+        {% if variable_data[colour][size]["recent_sew_data_variable"] != "N/A" %}
+        <td>{{ variable_data[colour][size]["recent_sew_data_variable"]["sewing_line"] }}</td>
+        <td>{{ variable_data[colour][size]["recent_sew_data_variable"]["sam"] }}</td>
+        {% else %}
+        <td>N/A</td>
+        <td>N/A</td>
+        {% endif %}
+        {% if constant_data[colour][size]["sew_data_constant"] != "N/A" %}
+        <td>{{ constant_data[colour][size]["sew_data_constant"]["days"] }}</td>
+        {% else %}
+        <td>N/A</td>
+        {% endif %}
+        {% if variable_data[colour][size]["recent_sew_data_variable"] != "N/A" %}
+        <td>{{ variable_data[colour][size]["recent_sew_data_variable"]["man_power"] }}</td>
+        <td>{{ variable_data[colour][size]["recent_sew_data_variable"]["helpers"] }}</td>
+        {% else %}
+        <td>N/A</td>
+        <td>N/A</td>
+        {% endif %}
+        {% if constant_data[colour][size]["sew_data_constant"] != "N/A" %}
+        <td>{{ constant_data[colour][size]["sew_data_constant"]["planned_wip"] }}</td>
+        {% else %}
+        <td>N/A</td>
+        {% endif %}
+        <td>{{ recent_actual_output[colour][size]["recent_actual_output"] }}</td>
+        {% if constant_data[colour][size]["sew_data_constant"] != "N/A" %}
+        <td>{{ constant_data[colour][size]["sew_data_constant"]["planned_output"] }}</td>
+        {% else %}
+        <td>N/A</td>
+        {% endif %}
+        <td>{{ total_actual_output[colour][size]["total_actual_output"] }}</td>
+        </tr>
+        {% endfor %}
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="all sewing reports.html#mytable">Link to Table</a>
+  </body>
+</html>

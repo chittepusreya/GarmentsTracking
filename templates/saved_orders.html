@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Saved Order Details</title>
+    <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <header class="header">
+      <div class="menu-icon">
+          <a href="/home"><span class="material-icons-outlined">arrow_back</span></a>
+      </div>
+
+        <div id="clock"></div>
+
+	<script>
+		function updateTime() {
+			// Get the current date and time
+			var now = new Date();
+
+			// Format the time as hours:minutes:seconds AM/PM
+			var hours = now.getHours();
+			var minutes = now.getMinutes();
+			var ampm = (hours >= 12) ? "PM" : "AM";
+			hours = hours % 12;
+			hours = (hours == 0) ? 12 : hours;
+			minutes = (minutes < 10) ? "0" + minutes : minutes;
+			var timeString = hours + ":" + minutes + " " + ampm;
+
+			// Update the clock
+			document.getElementById("clock").innerHTML = timeString;
+		}
+
+		// Update the time every second
+		setInterval(updateTime, 1000);
+	</script>
+
+    </header>
+</head>
+
+<body>
+<table id="myTable">
+      <h1>Saved Order Details Report</h1>
+      <thead>
+          <th>Buyer</th>
+          <th>Item no.</th>
+          <th>Style no.</th>
+          <th>Color Code</th>
+          <th>Order Quantity</th>
+          <th>Sizes</th>
+          <th>Issue Date</th>
+          <th>Delivery Date</th>
+          <th>Next</th>
+          <th>Delete</th>
+      </thead>
+    <tbody id="table-body">
+      {% for order in data %}
+      <tr>
+        <td>{{ order["buyer"] }}</td>
+        <td>{{ order["item_num"] }}</td>
+        <td>{{ order["style_num"] }}</td>
+        <td>{{ order["colour_code"] }}</td>
+        <td>{{ order["quantity"] }}</td>
+        <td>{{ order["sizes"] }}</td>
+        <td>{{ order["issue_date"] }}</td>
+        <td>{{ order["delivery_date"] }}</td>
+        <td>
+          <button class="go">
+            <a href="/orders/{{ order['order_id'] }}/inputs">Next</a>
+          </button>
+        </td>
+        <td>
+          <button class="go">
+            <a href="/orders/{{ order['order_id'] }}/delete">Delete</a>
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+</body>
+</html>
+
+<style>
+          body {
+          background-color: #fffff0;
+          margin: 0;
+          padding: 0;
+          }
+        .material-icons-outlined {
+         vertical-align: middle;
+         line-height: 10px;
+         font-size: 35px;
+         color: #330066;
+        }
+		.header {
+          grid-area: header;
+          height: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 30px 0 30px;
+          box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+        }
+        .menu-icon {
+          height: 50px;
+          display: flex;
+          margin-top: 30px;
+         }
+		.header-right {
+          grid-area: header;
+          height: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 15px;
+          padding: 0 30px 0 30px;
+          box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+          cursor: pointer;
+        }
+
+        h1 {
+		 font-size: 30px;
+		 font-weight: 600;
+		 padding: 10px;
+		 text-align: center;
+		 text-decoration: underline;
+		 }
+		table, th, td {
+		margin-left: 30px;
+		border: 1px solid black;
+		border-collapse: collapse;
+		padding: 10px 50px;
+		justify-content: space-between;
+		margin-bottom: 100px;
+		}
+		th {
+		background-color: #aa80ff;
+		color: black;
+		padding: 10px 45px;
+		}
+	.go {
+	cursor: pointer;
+	background-color: #b0a4f4;
+	padding: 10px 10px;
+	border-radius: 8px;
+	border: 1px solid ccc;
+	}
+	.go a {
+	font-family: sans-serif;
+	font-weight: 700;
+	font-size: 15px;
+	padding: 10px 10px;
+	color: black;
+	display: background;
+	text-decoration: none;
+	transition: 0.3s;
+	box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+	}
+	.go:hover{
+	background-color: #7851a9;
+	}
+	.container {
+    text-align: center;
+    }
+</style>

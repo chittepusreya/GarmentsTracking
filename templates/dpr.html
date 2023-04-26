@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily production report</title>
+
+<header class="header">
+	<div class="menu-icon">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+        <a href="/home"><span class="material-icons-outlined">home</span></a>
+    </div>
+	<div class="header-right">
+
+		<div id="clock"></div>
+	<script>
+		function updateTime() {
+			// Get the current date and time
+			var now = new Date();
+
+			// Format the time as hours:minutes:seconds AM/PM
+			var hours = now.getHours();
+			var minutes = now.getMinutes();
+			var ampm = (hours >= 12) ? "PM" : "AM";
+			hours = hours % 12;
+			hours = (hours == 0) ? 12 : hours;
+			minutes = (minutes < 10) ? "0" + minutes : minutes;
+			var timeString = hours + ":" + minutes + " " + ampm;
+
+			// Update the clock
+			document.getElementById("clock").innerHTML = timeString;
+		}
+
+		// Update the time every second
+		setInterval(updateTime, 1000);
+	</script>
+
+<button onclick="savePage()"><span class="material-icons-outlined">print</span></button>
+<script>
+  function savePage() {
+    window.print(); // Open the print dialog
+  }
+</script>
+
+<button id="email-btn"><span class="material-icons-outlined">email</span></button>
+
+</div>
+</header>
+</head>
+
+<body>
+<table id="myTable">
+    <h1>SHAHI EXPORTS PVT LTD DAILY PRODUCTION REPORT</h1>
+    {% if data %}
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Item no.</th>
+        <th>Style No.</th>
+        <th>Colour</th>
+        <td>Size</td>
+        <th>Order Qty</th>
+        <th>Today Cut</th>
+        <th>Till date Cut Qty</th>
+        <th>Today Sewing</th>
+        <th>Till date Sewing</th>
+        <th>Today Washing</th>
+        <th>Till date Washing</th>
+        <th>Today Finishing</th>
+        <th>Till date Finishing</th>
+        <th>Today Packing</th>
+        <th>Till date Packing</th>
+        <!-- Add more column headers as needed -->
+      </tr>
+    </thead>
+    <tbody id="tbody">
+      {% for order in data %}
+      <tr>
+        <td>{{ order["date"] }}</td>
+        <td>{{ order["item_num"] }}</td>
+        <td>{{ order["style_num"] }}</td>
+        <td>{{ order["colour_code"] }}</td>
+        <td>{{ order["sizes"] }}</td>
+        <td>{{ order["quantity"] }}</td>
+        <td>{{ order["today_cut"] }}</td>
+        <td>{{ order["till_date_cut"] }}</td>
+        <td>{{ order["today_sew"] }}</td>
+        <td>{{ order["till_date_sew"] }}</td>
+        <td>{{ order["today_wash"] }}</td>
+        <td>{{ order["till_date_wash"] }}</td>
+        <td>{{ order["today_finish"] }}</td>
+        <td>{{ order["till_date_finish"] }}</td>
+        <td>{{ order["today_packing"] }}</td>
+        <td>{{ order["till_date_packing"] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    {% else %}
+    <h3>Nothing to Show</h3>
+    {% endif %}
+  </table>
+  </body>
+  </html>
+
+  <style>
+        body {
+		margin: 10px;
+		padding: 0;
+		background-color: #fffff0;
+		}
+		.material-icons-outlined {
+         vertical-align: middle;
+         line-height: 10px;
+         font-size: 35px;
+        }
+		.header {
+          grid-area: header;
+          height: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 30px 0 30px;
+          box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+        }
+        .menu-icon {
+          height: 50px;
+          display: flex;
+          margin-top: 30px;
+         }
+		.header-right {
+          grid-area: header;
+          height: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 15px;
+          padding: 0 30px 0 30px;
+          box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+          cursor: pointer;
+        }
+        #email-btn {
+          padding: 8px;
+          background-color: #fffff0;
+          box-border: none;
+          cursor: pointer;
+        }
+
+        [onclick] {
+          padding: 8px;
+          background-color: #fffff0;
+          cursor: pointer;
+        }
+         h1 {
+		 font-size: 30px;
+		 font-weight: 600;
+		 padding: 10px;
+		 text-align: center;
+		 text-decoration: underline;
+		 }
+		table, th, td {
+		margin-left: 30px;
+		border: 1px solid black;
+		border-collapse: collapse;
+		padding: 20px 80px;
+		justify-content: space-between;
+		margin-bottom: 100px;
+		}
+		th {
+		background-color: #aa80ff;
+		color: black;
+		padding: 10px 45px;
+		}
+  </style>

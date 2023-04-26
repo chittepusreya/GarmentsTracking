@@ -1,0 +1,96 @@
+body{
+    margin: 50px;
+    padding: 20px 120px;
+	background-size: cover;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	font-family: sans-serif;
+}
+.container{
+	position: center;
+	margin-top: 100px;
+	width: 550px;
+	height: 350px;
+	background: rgb(240, 240, 240, 0.6);
+	border-radius: 10px;
+	text-align: center;
+}
+.container h1{
+	text-align: center;
+	color: black;
+	padding: 20px 0;
+	border-bottom: 1px solid black;
+}
+.container form{
+    align-items: center;
+	padding:40px 40px;
+	box-sizing: border-box;
+	text-align: center;
+}
+.container label{
+    align-items: center;
+	padding:40px 40px;
+	font-size: 25px;
+	text-align: center;
+}
+form .txt_field{
+	align-items: center;
+	position: relative;
+	border-bottom: 2px solid black;
+	margin-left: 130px;
+}
+.txt_field input{
+	width: 100%;
+	padding: 5px 5px;
+	height: 40px;
+	font-size: 16px;
+	border: none;
+	background: none;
+	outline: none;
+}
+.txt_field label{
+	position: absolute;
+	top: 50%;
+	left: 45px;
+	color: none;
+	transform: translate(-50%);
+	font-size: 16px;
+	pointer-events: none;
+	transition: .5s;
+}
+         input[type=text] {
+            width: 40%;
+            padding: 10px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+         }
+
+         input[type=password] {
+            width: 40%;
+            padding: 10px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+         }
+#btn{
+    margin-top: 40px;
+    width: 50%;
+    height: auto;
+    font-size: large;
+    color: white;
+    background-color: #1a0033;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label{
+	top: -5px;
+	color: white;
+}

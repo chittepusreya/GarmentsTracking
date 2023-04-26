@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Barcode Scanner Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/quagga/dist/quagga.min.js"></script>
+    <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  </head>
+  <body>
+      <div class="menu-icon">
+          <a href="/orders/{{ order_id }}/inputs/{{ stage }}"><span class="material-icons-outlined">arrow_back</span></a>
+      </div>
+    <h1>Barcode Scanner</h1>
+
+        <div id="scanner-container"></div>
+        <div id="results-container"></div>
+        <form action="/orders/{{ order_id }}/inputs/{{ stage }}/scan/save" method="post">
+          <label for="count">Count: </label>
+          <input type="number" value="0" id="count" name="completed_pieces">
+          <label for="color_code">Color:</label>
+          <input type="text" name="colour_code" id="color_code">
+          <label for="sizes">Size:</label>
+          <input type="text" name="sizes" id="sizes">
+          <input type="submit" value="Complete">
+        </form>
+    <script>
+// Configure the scanner
+      Quagga.init({
+        inputStream : {
+          name : "Live",
+          type : "LiveStream",
+          target: document.querySelector('#scanner-container')
+        },
+        decoder : {
+          readers : ["ean_reader"]
+        }
+      }, function(err) {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        console.log("Initialization finished. Ready to start");
+        Quagga.start();
+      });
+
+// Listen for barcode scans
+      Quagga.onDetected(function(result) {
+        console.log("Barcode detected and processed : [" + result.codeResult.code + "] ", result);
+        document.querySelector('#results-container').textContent = result.codeResult.code;
+      });
+    </script>
+
+   <button id="onclick">Add Count</button>
+<script>
+var count = 0;
+var barcodeInput = document.getElementById("results-container");
+var countOutput = document.getElementById("count");
+var onclick_button = document.getElementById("onclick");
+onclick_button.onclick = function(){
+  var barcode = barcodeInput.innerHTML;
+  if (barcode != "") {
+    count += 1;
+    countOutput.setAttribute("value", count);
+    barcodeInput.innerHTML = "";
+  }
+}
+
+function addCount() {
+  var barcode = barcodeInput.value;
+  if (barcode !== "") {
+    count = count+1;
+    countOutput.innerHTML = count;
+    barcodeInput.value = "";
+  }
+}
+</script>
+
+  </body>
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      p {
+        margin-bottom: 10px;
+      }
+
+        input[type="text"] {
+        font-size: 16px;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        margin-right: 10px;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 10px;
+        background-color: #1e90ff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #004d99;
+      }
+
+      span {
+        font-weight: bold;
+      }
+      input[type=submit] {
+            margin-top: 30px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+         }
+      input[type=submit]:hover {
+            background-color: #228b22;
+         }
+</style>

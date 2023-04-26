@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Order Input</title>
+    <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+        <link rel="stylesheet" href="{{url_for('static', filename='order_form.css')}}">
+</head>
+<body>
+    <div class="container">
+        <div class="menu-icon">
+          <a href="/home"><span class="material-icons-outlined">home</span></a>
+        </div>
+    </div>
+      <h1>Input of order details</h1>
+    <div class="form-container">
+         <form action="/save_order" method="post" enctype="multipart/form-data">
+             <table>
+            <tr>
+                <td><label for="buyer">Buyer: </label></td>
+                <td><select name="buyer" id="buyer">
+                <option value="JCPenny">JCPenny</option>
+                <option value="Kroger">Kroger</option>
+                <option value="AtLast">AtLast</option>
+                <option value="AtLast">C & A</option>
+                <option value="H & M">H & M</option>
+            </select></td>
+            </tr>
+
+            <tr>
+                <td> <label for="item_no">Item no.:</label></td>
+                <td> <input type="text" name="item_num" id="item_no"></td>
+            </tr>
+
+            <tr>
+                <td> <label for="style_no">Style no.:</label></td>
+                <td> <input type="text" name="style_num" id="style_no"></td>
+            </tr>
+
+             <tr>
+                 <td><label for="color_code">Color:</label></td>
+                 <td><input type="text" name="colour_code" id="color_code"></td>
+             </tr>
+
+            <tr>
+                <td><label for="order_qty">Order Quantity:</label></td>
+                <td> <input type="number" name="order_qty" id="order_qty"></td>
+            </tr>
+
+            <tr>
+                <td><label for="sizes">Sizes:</label></td>
+                <td><input type="text" name="order_size" id="sizes"></td>
+            </tr>
+
+            <tr>
+                <td><label for="issue_date">Issue Date:</label></td>
+                <td><input type="date" name="issue_date" id="issue_date"></td>
+            </tr>
+
+            <tr>
+                <td> <label for="delivery_date">Delivery Date:</label></td>
+                <td><input type="date" name="delivery_date" id="delivery_date"></td>
+            </tr>
+             </table>
+
+            <input type="submit" value="Save">
+        </form>
+    </div>
+</body>
+</html>

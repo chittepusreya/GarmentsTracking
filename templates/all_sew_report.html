@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Saved Sewing Reports</title>
+        <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='all_reports.css') }}">
+    <header class="header">
+      <div class="menu-icon">
+          <a href="/home"><span class="material-icons-outlined">home</span></a>
+      </div>
+              <div class="header-right">
+        <div id="clock"></div>
+	<script>
+		function updateTime() {
+			// Get the current date and time
+			var now = new Date();
+
+			// Format the time as hours:minutes:seconds AM/PM
+			var hours = now.getHours();
+			var minutes = now.getMinutes();
+			var ampm = (hours >= 12) ? "PM" : "AM";
+			hours = hours % 12;
+			hours = (hours == 0) ? 12 : hours;
+			minutes = (minutes < 10) ? "0" + minutes : minutes;
+			var timeString = hours + ":" + minutes + " " + ampm;
+
+			// Update the clock
+			document.getElementById("clock").innerHTML = timeString;
+		}
+
+		// Update the time every second
+		setInterval(updateTime, 1000);
+	</script>
+         </div>
+    </header>
+</head>
+<body>
+	<h1>Total Sewing Report</h1>
+	{% for i in range(length) %}
+    <table>
+		<thead>
+		<tr>
+			<th>S.no</th>
+			<th>Item no.</th>
+			<th>Style no.</th>
+			<th>Color</th>
+			<th>Size</th>
+			<th>Planned Start Sew Date</th>
+			<th>Planned End Sew Date</th>
+			<th>Actual Start Sew Date</th>
+			<th>Actual End Sew Date</th>
+			<th>Sewing Line no.</th>
+			<th>Garment SAM</th>
+			<th>No. of Days</th>
+			<th>Manpower</th>
+			<th>Helpers</th>
+			<th>Planned WIP</th>
+			<th>Actual WIP</th>
+			<th>Planned Output</th>
+			<th>Actual Output</th>
+		</tr>
+		</thead>
+		<tbody id="tableBody">
+			{% for colour in all_order_stage_details[i][1] %}
+			{% for size in all_order_stage_details[i][2] %}
+			<tr>
+			<td>{{ all_order_stage_details[i][3][colour][size]["count"] }}</td>
+			<td>{{ all_order_stage_details[i][0]["item_num"] }}</td>
+			<td>{{ all_order_stage_details[i][0]["style_num"] }}</td>
+			<td>{{ colour }}</td>
+			<td>{{ size }}</td>
+			{% if all_order_stage_details[i][4][colour][size]["sew_data_constant"] != "N/A" %}
+			<td>{{ all_order_stage_details[i][4][colour][size]["sew_data_constant"]["p_s_s_d"] }}</td>
+			<td>{{ all_order_stage_details[i][4][colour][size]["sew_data_constant"]["p_e_s_d"] }}</td>
+			<td>{{ all_order_stage_details[i][4][colour][size]["sew_data_constant"]["a_s_s_d"] }}</td>
+			{% else %}
+			<td>N/A</td>
+			<td>N/A</td>
+			<td>N/A</td>
+			{% endif %}
+			<td>{{ all_order_stage_details[i][8][colour][size]["completed_date"] }}</td>
+			{% if all_order_stage_details[i][5][colour][size]["recent_sew_data_variable"] != "N/A" %}
+			<td>{{ all_order_stage_details[i][5][colour][size]["recent_sew_data_variable"]["sewing_line"] }}</td>
+			<td>{{ all_order_stage_details[i][5][colour][size]["recent_sew_data_variable"]["sam"] }}</td>
+			{% else %}
+			<td>N/A</td>
+			<td>N/A</td>
+			{% endif %}
+			{% if all_order_stage_details[i][4][colour][size]["sew_data_constant"] != "N/A" %}
+			<td>{{ all_order_stage_details[i][4][colour][size]["sew_data_constant"]["days"] }}</td>
+			{% else %}
+			<td>N/A</td>
+			{% endif %}
+			{% if all_order_stage_details[i][5][colour][size]["recent_sew_data_variable"] != "N/A" %}
+			<td>{{ all_order_stage_details[i][5][colour][size]["recent_sew_data_variable"]["man_power"] }}</td>
+			<td>{{ all_order_stage_details[i][5][colour][size]["recent_sew_data_variable"]["helpers"] }}</td>
+			{% else %}
+			<td>N/A</td>
+			<td>N/A</td>
+			{% endif %}
+			{% if all_order_stage_details[i][4][colour][size]["sew_data_constant"] != "N/A" %}
+			<td>{{ all_order_stage_details[i][4][colour][size]["sew_data_constant"]["planned_wip"] }}</td>
+			{% else %}
+			<td>N/A</td>
+			{% endif %}
+			<td>{{ all_order_stage_details[i][6][colour][size]["recent_actual_output"] }}</td>
+			{% if all_order_stage_details[i][4][colour][size]["sew_data_constant"] != "N/A" %}
+			<td>{{ all_order_stage_details[i][4][colour][size]["sew_data_constant"]["planned_output"] }}</td>
+			{% else %}
+			<td>N/A</td>
+			{% endif %}
+			<td>{{ all_order_stage_details[i][7][colour][size]["total_actual_output"] }}</td>
+			</tr>
+			{% endfor %}
+			{% endfor %}
+		</tbody>
+	</table>
+	{% endfor %}
+</body>
+</html>

@@ -1,0 +1,169 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ebebe3;
+  color: #4c4b4b;
+  font-family: "Montserrat", "Sans-serif";
+  width: 100%;
+}
+
+.material-icons-outlined {
+  vertical-align: middle;
+  line-height: 10px;
+  font-size: 35px;
+  color: #264040;
+}
+
+.grid-container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 260px 1fr 1fr 1fr;
+  grid-template-rows: 0.1fr 3fr;
+  grid-template-areas:
+      "header header header header"
+      "main main main main";
+  height: 100%;
+}
+
+/* ---------- HEADER ---------- */
+.header {
+  grid-area: header;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px 0 30px;
+  box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+}
+
+.header-right {
+  grid-area: header;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 10px;
+}
+
+#email-btn {
+  padding: 8px;
+  background-color: #ebebe3;
+  box-border: none;
+  cursor: pointer;
+}
+
+[onclick] {
+  padding: 8px;
+  background-color: #ebebe3;
+  cursor: pointer;
+}
+
+/* ---------- MAIN ---------- */
+.filter-container {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  font-family: sans-serif;
+  font-size: 22px;
+  font-weight: 550;
+  line-height: 20px;
+  gap: 15px;
+}
+
+.filter-option {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  display: grid;
+  font-family: sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  gap: 10px;
+}
+
+.filter-option label {
+  margin-right: 10px;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.apply-filter-btn .submit {
+    background-color: #568c8f;
+    margin-top: 20px;
+    margin-left: 20px;
+    text-align: center;
+    padding: 10px 25px;
+    font-size: 20px;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+	}
+input[type=submit]:hover {
+    background-color: #395e60;
+    }
+
+.main-container {
+  grid-area: main;
+  overflow-y: auto;
+  color: black;
+}
+
+.main-title {
+  margin-left: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  font-size: 25px;
+}
+
+table, th, td {
+  margin-top: 0px;
+  margin-left: 20px;
+  margin-bottom: 30px;
+  color: black;
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 20px;
+  justify-content: space-between;
+  text-align: left;
+}
+th {
+  background-color: #5f9ea0;
+  padding: 10px;
+  text-align: center;
+  }
+
+.check-details {
+margin: 50px;
+}
+
+.style {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  font-family: sans-serif;
+  font-size: 25px;
+  font-weight: 550;
+  line-height: 20px;
+  gap: 15px;
+  color: #1d3030;
+}
+.check-btn .submit {
+		display: flex;
+		background-color: #568c8f;
+		margin-top: 30px;
+        margin-left: 20px;
+        text-align: center;
+        padding: 10px 25px;
+        font-size: 20px;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+		}
+		input[type=submit]:hover {
+            background-color: #395e60
+         }
+

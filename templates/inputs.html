@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Next</title>
+  <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <header class="header">
+      <div class="menu-icon">
+          <a href="/home"><span class="material-icons-outlined">arrow_back</span></a>
+      </div>
+    </header>
+</head>
+<body>
+<h1>Production Input [Cutting-Packing]</h1>
+<table>
+  <thead>
+    <td><h2>Stage</h2></td>
+    <td><h2>Inputs</h2></td>
+    <td><h2>Mark As Complete</h2></td>
+    <td><h2>Report</h2></td>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <h3>Cutting</h3>
+      </td>
+      <td>
+        <button class="cut">
+        <a href="/orders/{{ order_id }}/inputs/cut">Input</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h3>Sewing</h3>
+      </td>
+      <td>
+        <button class="cut">
+        <a href="/orders/{{ order_id }}/inputs/sew">Input</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h3>Washing</h3>
+      </td>
+      <td>
+        <button class="cut">
+        <a href="/orders/{{ order_id }}/inputs/wash">Input</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h3>Finishing</h3>
+      </td>
+      <td>
+        <button class="cut">
+        <a href="/orders/{{ order_id }}/inputs/finish">Input</a>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h3>Packing</h3>
+      </td>
+      <td>
+        <button class="cut">
+        <a href="/orders/{{ order_id }}/inputs/packing">Input</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
+
+<style>
+  body {
+  margin: 0px;
+  background-color: #fffff0;
+  }
+  .material-icons-outlined {
+         vertical-align: middle;
+         line-height: 10px;
+         font-size: 35px;
+         color: #330066;
+        }
+		.header {
+          grid-area: header;
+          height: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 30px;
+        }
+        .menu-icon {
+          height: 50px;
+          display: flex;
+          margin-top: 30px;
+         }
+  .input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+   h1 {
+   text-align: center;
+   margin-bottom: 50px;
+   }
+  .cut {
+  display: grid;
+  cursor: pointer;
+  background-color: #0088ff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  }
+  .cut a {
+  font-family: sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  padding: 10px 200px;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+  box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+  }
+  .cut:hover {
+  background-color: #005299;
+  }
+  .sew {
+  display: grid;
+  cursor: pointer;
+  background-color: #0088ff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  }
+  .sew a {
+  font-family: sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  padding: 10px 200px;
+	color: white;
+	text-decoration: none;
+	transition: 0.3s;
+	box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+	}
+  .sew:hover {
+  background-color: #005299;
+  }
+  .wash {
+  display: grid;
+  cursor: pointer;
+  background-color: #0088ff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  }
+  .wash a {
+  font-family: sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  padding: 10px 195px;
+	color: white;
+	text-decoration: none;
+	transition: 0.3s;
+	box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+	}
+  .wash:hover {
+  background-color: #005299;
+  }
+  .finish {
+  display: grid;
+  cursor: pointer;
+  background-color: #0088ff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  }
+  .finish a {
+  font-family: sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  padding: 10px 193px;
+	color: white;
+	text-decoration: none;
+	transition: 0.3s;
+	box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+	}
+	.finish:hover {
+  background-color: #005299;
+  }
+  .pack {
+  display: grid;
+  cursor: pointer;
+  background-color: #0088ff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  }
+  .pack a {
+  font-family: sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  padding: 10px 200px;
+	color: white;
+	text-decoration: none;
+	transition: 0.3s;
+	box-shadow: 0 6px 7 px -3px rgba(244, 244, 244, 0.35);
+	}
+	.pack:hover {
+  background-color: #005299;
+  }
+
+</style>

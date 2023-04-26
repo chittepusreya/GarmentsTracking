@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shahi Exports Pvt Ltd</title>
+
+        <!-- Montserrat Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+        <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+
+        <!-- Start Header -->
+            <header class="header">
+
+                <div class="menu-icon">
+                    <a href="/home"><span class="material-icons-outlined">home</span></a>
+                </div>
+
+            <div class="header-right">
+                <div id="clock"></div>
+	<script>
+		function updateTime() {
+			// Get the current date and time
+			var now = new Date();
+
+			// Format the time as hours:minutes:seconds AM/PM
+			var hours = now.getHours();
+			var minutes = now.getMinutes();
+			var ampm = (hours >= 12) ? "PM" : "AM";
+			hours = hours % 12;
+			hours = (hours == 0) ? 12 : hours;
+			minutes = (minutes < 10) ? "0" + minutes : minutes;
+			var timeString = hours + ":" + minutes + " " + ampm;
+
+			// Update the clock
+			document.getElementById("clock").innerHTML = timeString;
+		}
+
+		// Update the time every second
+		setInterval(updateTime, 1000);
+	</script>
+        <button onclick="savePage()"><span class="material-icons-outlined">print</span></button>
+<script>
+  function savePage() {
+    window.print(); // Open the print dialog
+  }
+</script>
+
+    <button id="email-btn"><span class="material-icons-outlined">email</span></button>
+    <script>
+      const emailBtn = document.getElementById('email-btn');
+
+emailBtn.addEventListener('click', function() {
+  const subject = encodeURIComponent(document.title);
+  const body = encodeURIComponent(window.location.href);
+  const emailLink = `mailto:?subject=${subject}&body=${body}`;
+  window.location.href = emailLink;
+});
+
+    </script>
+            </div>
+            </header>
+            <!-- End Header -->
+    </head>
+    <body>
+        <div class="grid-container">
+
+            <!-- Main -->
+
+            <main class="main-container">
+                <div class="main-title">
+                    <h2>DASHBOARD</h2>
+                </div>
+                <div class="filter-container">
+                  <form action="/dashboard/filter" method="post">
+                    <h3>Filter by:</h3>
+                    <div class="filter-option">
+                      <label for="buyer-filter">Buyer:</label>
+                      <select id="buyer-filter" name="buyer_filter">
+                        <option value="ALL">All</option>
+                        <option value="AtLast">AtLast</option>
+                        <option value="C&A">C&A</option>
+                        <option value="H&M">H&M</option>
+                        <option value="JCPenny">JCPenny</option>
+                        <option value="Kroger">Kroger</option>
+                      </select>
+                    </div>
+                    <div class="filter-option">
+                      <label for="style-filter">Style No.:</label>
+                      <select id="style-filter" name="style_filter">
+                        <option value="ALL">All</option>
+                        <option value="AtLast">AtLast</option>
+                        <option value="C&A">C&A</option>
+                        <option value="H&M">H&M</option>
+                        <option value="JCPenny">JCPenny</option>
+                        <option value="Kroger">Kroger</option>
+                      </select>
+                    </div>
+                    <div class="filter-option">
+                        <label for="color-filter">Color:</label>
+                        <select id="color-filter" name="colour_filter">
+                          <option value="ALL">All</option>
+                          <option value="Red">Red</option>
+                          <option value="Blue">Blue</option>
+                          <option value="Green">Green</option>
+                          <option value="Yellow">Yellow</option>
+                        </select>
+                      </div>
+                    <div class="apply-filter-btn">
+                        <input type="submit" class="submit" value="Apply Filter">
+                    </div>
+                  </form>
+                  </div>
+                  <div class="product-list">
+                    <!-- products will be displayed here -->
+                  </div>
+
+                <table>
+                    <thead>
+                        <th>S No.</th>
+                        <th>Item No.</th>
+                        <th>Style No.</th>
+                        <th>Colour</th>
+                        <th>Buyer</th>
+                        <th>Order Qty</th>
+                        <th>Size</th>
+                        <th>Start Date</th>
+                        <th>Shipment Date</th>
+                        <th>Line No.</th>
+                        <th>Manpower</th>
+                        <th>Line Efficiency</th>
+                        <th>Planned pcs(Cutting)</th>
+                        <th>Actual pcs(Cutting)</th>
+                        <th>Rejected pcs (Cutting)</th>
+                        <th>Planned pcs(Sewing)</th>
+                        <th>Actual pcs(Sewing)</th>
+                        <th>Rejected pcs (Sewing)</th>
+                        <th>Planned pcs(Washing)</th>
+                        <th>Actual pcs(Washing)</th>
+                        <th>Rejected pcs (Washing)</th>
+                        <th>Planned pcs(Finishing)</th>
+                        <th>Actual pcs(Finishing)</th>
+                        <th>Rejected pcs (Finishing)</th>
+                        <th>Planned pcs(Packing)</th>
+                        <th>Actual pcs(Packing)</th>
+                        <th>Rejected pcs (Packing)</th>
+                        <th>Status</th>
+                    </thead>
+                    <tbody id="table-body">
+                      {% for i in range(length) %}
+                      <tr>
+                        <td>{{ i+1 }}</td>
+                        <td>{{ data[i]["item_num"] }}</td>
+                        <td>{{ data[i]["style_num"] }}</td>
+                        <td>{{ data[i]["colour_code"] }}</td>
+                        <td>{{ data[i]["buyer"] }}</td>
+                        <td>{{ data[i]["quantity"] }}</td>
+                        <td>{{ data[i]["sizes"] }}</td>
+                        <td>{{ data[i]["start_date"] }}</td>
+                        <td>{{ data[i]["shipment_date"] }}</td>
+                        <td>{{ data[i]["line_num"] }}</td>
+                        <td>{{ data[i]["man_power"] }}</td>
+                        <td>{{ data[i]["eff"] }}</td>
+                        <td>{{ data[i]["planned_output"]["cut"] }}</td>
+                        <td>{{ data[i]["actual_output"]["cut"] }}</td>
+                        <td>{{ data[i]["rejected_output"]["cut"] }}</td>
+                        <td>{{ data[i]["planned_output"]["sew"] }}</td>
+                        <td>{{ data[i]["actual_output"]["sew"] }}</td>
+                        <td>{{ data[i]["rejected_output"]["sew"] }}</td>
+                        <td>{{ data[i]["planned_output"]["wash"] }}</td>
+                        <td>{{ data[i]["actual_output"]["wash"] }}</td>
+                        <td>{{ data[i]["rejected_output"]["wash"] }}</td>
+                        <td>{{ data[i]["planned_output"]["finish"] }}</td>
+                        <td>{{ data[i]["actual_output"]["finish"] }}</td>
+                        <td>{{ data[i]["rejected_output"]["finish"] }}</td>
+                        <td>{{ data[i]["planned_output"]["packing"] }}</td>
+                        <td>{{ data[i]["actual_output"]["packing"] }}</td>
+                        <td>{{ data[i]["rejected_output"]["packing"] }}</td>
+                        <td>{{ data[i]["status"] }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+            <!-- End Main -->
+        </div>
+    <!-- Bar Graph -->
+
+        <div class="check-details">
+                <div class="style">
+                    <label for="style">Style No:</label>
+                    <input type="search" name="style" id="style">
+                </div>
+                <div class="check-btn">
+                <input type="submit" class="submit" value="Check">
+                </div>
+        </div>
+    </body>
+</html>

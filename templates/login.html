@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login Form</title>
+	<link rel="stylesheet" href="../static/style.css">
+</head>
+<style>
+body  {
+  background-image: url("../static/shahi.jpg");
+  background-color: #cccccc;
+}
+</style>
+<form action="/validate_login" method="post" >
+	<div class="container">
+		<h1>User Login</h1>
+		<form name="form" action="/validate_login" method='POST'>
+		        <label>Username:</label>
+			    <input type="text" id="user" name="username" required><br></br>
+			    <label>Password:</label>
+		        <input type="password" id="pass" name="password" required><br></br>
+				<input type="submit" id="btn" value="Login" name="submit"/>
+		</form>
+	</div>
+</form>
+</html>
